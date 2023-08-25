@@ -73,7 +73,7 @@ export default async function Home() {
         </div>
         <h1 className="text-xl font-semibold text-zinc-900">Example</h1>
         <Link
-          href="/adomaitisc/2021"
+          href="https://github.com/adomaitisc/github-contributions-api"
           target="_blank"
           className="text-green-500 hover:underline"
         >
