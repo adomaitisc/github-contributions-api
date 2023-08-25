@@ -3,6 +3,8 @@ import { Contributions, Table } from "./table";
 
 const currentYear = new Date().getFullYear().toString();
 
+export const revalidate = 60;
+
 export default async function Home() {
   const rawApiUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}/<username>/<year>`
@@ -12,7 +14,12 @@ export default async function Home() {
     .replace("<username>", "adomaitisc")
     .replace("<year>", currentYear);
 
-  const contributions: Table = await (await fetch(apiUrl)).json();
+  let contributions: Table | null = null;
+
+  const res = await fetch(apiUrl);
+  if (res.ok) {
+    contributions = await (await fetch(apiUrl)).json();
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-24 px-8 md:p-24 bg-zinc-100">
