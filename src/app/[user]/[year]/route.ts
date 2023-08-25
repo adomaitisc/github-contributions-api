@@ -1,5 +1,4 @@
 import { parseHTML } from "linkedom";
-import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
@@ -66,5 +65,11 @@ export async function GET(
     contributions.push(weekContributions);
   }
 
-  return NextResponse.json(contributions);
+  return new Response(JSON.stringify(contributions), {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
 }
