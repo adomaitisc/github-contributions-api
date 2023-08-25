@@ -40,7 +40,7 @@ export default async function Home() {
         </p>
         <div className="h-[0.5px] bg-zinc-300 w-full" />
         <div className="overflow-scroll max-w-3xl w-full">
-          {/* {contributions && <Contributions table={contributions} />} */}
+          <Contributions />
         </div>
         <div className="h-[0.5px] bg-zinc-300 w-full" />
         <h1 className="text-xl font-semibold text-zinc-900">Fetching</h1>
