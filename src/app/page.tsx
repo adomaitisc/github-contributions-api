@@ -10,16 +10,20 @@ export default async function Home() {
     ? `https://${process.env.VERCEL_URL}/<username>/<year>`
     : `http://localhost:3000/<username>/<year>`;
 
-  // const apiUrl = rawApiUrl
-  //   .replace("<username>", "adomaitisc")
-  //   .replace("<year>", currentYear);
+  const apiUrl = rawApiUrl
+    .replace("<username>", "adomaitisc")
+    .replace("<year>", currentYear);
 
-  // let contributions: Table | null = null;
+  let contributions: Table | null = null;
 
-  // const res = await fetch(apiUrl);
-  // if (res.ok) {
-  //   contributions = await (await fetch(apiUrl)).json();
-  // }
+  try {
+    const res = await fetch(apiUrl);
+    if (res.ok) {
+      contributions = await (await fetch(apiUrl)).json();
+    }
+  } catch (e) {
+    console.error(e);
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-24 px-8 md:p-24 bg-zinc-100">
