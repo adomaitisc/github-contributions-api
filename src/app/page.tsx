@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Contributions, Table } from "./table";
+import { Contributions } from "./table";
 
 const currentYear = new Date().getFullYear().toString();
 
@@ -13,17 +13,6 @@ export default async function Home() {
   const apiUrl = rawApiUrl
     .replace("<username>", "adomaitisc")
     .replace("<year>", currentYear);
-
-  let contributions: Table | null = null;
-
-  try {
-    const res = await fetch(apiUrl);
-    if (res.ok) {
-      contributions = await (await fetch(apiUrl)).json();
-    }
-  } catch (e) {
-    console.error(e);
-  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-24 px-8 md:p-24 bg-zinc-100">
@@ -40,7 +29,7 @@ export default async function Home() {
         </p>
         <div className="h-[0.5px] bg-zinc-300 w-full" />
         <div className="overflow-scroll max-w-3xl w-full">
-          <Contributions />
+          <Contributions url={apiUrl} />
         </div>
         <div className="h-[0.5px] bg-zinc-300 w-full" />
         <h1 className="text-xl font-semibold text-zinc-900">Fetching</h1>

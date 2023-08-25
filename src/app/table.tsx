@@ -17,13 +17,11 @@ export type Table = Row[];
 
 const colors = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
 
-export function Contributions() {
+export function Contributions({ url }: { url: string }) {
   const [table, setTable] = useState<Table | null>(null);
 
   useEffect(() => {
-    fetch(
-      "https://github-contributions-m3410aq9x-adomaitisc.vercel.app/adomaitisc/2021"
-    )
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setTable(data));
   }, []);
